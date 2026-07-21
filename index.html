@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <video autoplay muted playsinline loop controls></video>
+
+  <script>
+    (async () => {
+      const src = "./a.mp4";
+      const buffer = await fetch(src).then((r) => r.arrayBuffer());
+      const blob = new Blob([buffer], { type: "video/mp4" });
+      const blobUrl = URL.createObjectURL(blob);
+      const video = document.querySelector("video");
+      video.preload = "auto";
+      video.src = blobUrl;
+    })();
+  </script>
+</body>
+
+</html>
